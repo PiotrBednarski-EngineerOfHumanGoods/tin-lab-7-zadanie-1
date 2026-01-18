@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie 1 - Modyfikacja DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .divs-container {
+            margin-bottom: 30px;
+        }
+        .box {
+            padding: 20px;
+            margin: 10px 0;
+            background-color: #e0e0e0;
+            border: 2px solid #999;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .buttons-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        button {
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            font-weight: bold;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        #btn1 {
+            background-color: #4CAF50;
+        }
+        #btn1:hover {
+            background-color: #45a049;
+        }
+        #btn2 {
+            background-color: #f44336;
+        }
+        #btn2:hover {
+            background-color: #da190b;
+        }
+        #btn3 {
+            background-color: #2196F3;
+        }
+        #btn3:hover {
+            background-color: #0b7dda;
+        }
+        #btn4 {
+            background-color: #ff9800;
+        }
+        #btn4:hover {
+            background-color: #e68900;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zadanie 1 - Modyfikacja DOM</h1>
+        
+        <div class="divs-container" id="divsContainer">
+            <div class="box">Div 1</div>
+            <div class="box">Div 2</div>
+            <div class="box">Div 3</div>
+            <div class="box">Div 4</div>
+        </div>
+
+        <div class="buttons-container">
+            <button id="btn1">Dodaj div</button>
+            <button id="btn2">Usuń pierwszy div</button>
+            <button id="btn3">Zmień kolor div 3</button>
+            <button id="btn4">Wpisz "nowy tekst"</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('divsContainer');
+        let divCounter = 5;
+
+        // Przycisk 1 - dodaj kolejny div
+        document.getElementById('btn1').addEventListener('click', function() {
+            const newDiv = document.createElement('div');
+            newDiv.className = 'box';
+            newDiv.textContent = 'Div ' + divCounter;
+            container.appendChild(newDiv);
+            divCounter++;
+        });
+
+        // Przycisk 2 - usuń pierwszy div
+        document.getElementById('btn2').addEventListener('click', function() {
+            const firstDiv = container.querySelector('.box');
+            if (firstDiv) {
+                container.removeChild(firstDiv);
+            } else {
+                alert('Nie ma już divów do usunięcia!');
+            }
+        });
+
+        // Przycisk 3 - zmień kolor tła div numer 3
+        document.getElementById('btn3').addEventListener('click', function() {
+            const allDivs = container.querySelectorAll('.box');
+            if (allDivs.length >= 3) {
+                const div3 = allDivs[2]; // indeks 2 = trzeci element
+                // Generuj losowy kolor
+                const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+                div3.style.backgroundColor = randomColor;
+            } else {
+                alert('Nie ma diva numer 3!');
+            }
+        });
+
+        // Przycisk 4 - wpisz "nowy tekst" do wszystkich divów
+        document.getElementById('btn4').addEventListener('click', function() {
+            const allDivs = container.querySelectorAll('.box');
+            allDivs.forEach(function(div) {
+                div.textContent = 'nowy tekst';
+            });
+        });
+    </script>
+</body>
+</html>
