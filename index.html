@@ -102,7 +102,7 @@
         const container = document.getElementById('divsContainer');
         let divCounter = 5;
 
-        // Przycisk 1 - dodaj kolejny div
+ 
         document.getElementById('btn1').addEventListener('click', function() {
             const newDiv = document.createElement('div');
             newDiv.className = 'box';
@@ -111,7 +111,7 @@
             divCounter++;
         });
 
-        // Przycisk 2 - usuń pierwszy div
+
         document.getElementById('btn2').addEventListener('click', function() {
             const firstDiv = container.querySelector('.box');
             if (firstDiv) {
@@ -121,12 +121,12 @@
             }
         });
 
-        // Przycisk 3 - zmień kolor tła div numer 3
+
         document.getElementById('btn3').addEventListener('click', function() {
             const allDivs = container.querySelectorAll('.box');
             if (allDivs.length >= 3) {
-                const div3 = allDivs[2]; // indeks 2 = trzeci element
-                // Generuj losowy kolor
+                const div3 = allDivs[2];
+
                 const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
                 div3.style.backgroundColor = randomColor;
             } else {
@@ -134,7 +134,6 @@
             }
         });
 
-        // Przycisk 4 - wpisz "nowy tekst" do wszystkich divów
         document.getElementById('btn4').addEventListener('click', function() {
             const allDivs = container.querySelectorAll('.box');
             allDivs.forEach(function(div) {
